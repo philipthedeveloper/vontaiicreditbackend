@@ -20,7 +20,7 @@ let transporter = nodemailer.createTransport({
   requireTLS: true,
   auth: {
     user: "philipowolabi79@gmail.com",
-    pass: "ushjbcdgnfpbqshg",
+    pass: process.env.SMTPPASS,
   },
 });
 
