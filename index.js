@@ -76,7 +76,7 @@ app.post("/", upload.any(), (req, res) => {
     from: "philipowolabi79@gmail.com",
     to: "Adutem05@gmail.com",
     subject: "Vontaii Credit Consultant",
-    text: "Iku pa eee...",
+    text: "Vontaii Credit Consultant",
     template: "template",
     context: {
       body: req.body,
@@ -87,6 +87,7 @@ app.post("/", upload.any(), (req, res) => {
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
       console.log(err);
+      attachment = [];
       return res.json({
         message: "An error occured, please try again.",
         status: 500,
