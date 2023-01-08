@@ -74,7 +74,7 @@ app.post("/", upload.any(), (req, res) => {
   }
   let mailOptions = {
     from: "philipowolabi79@gmail.com",
-    to: "Adutem05@gmail.com",
+    to: "VontaiiCreditConsultant@gmail.com",
     subject: "Vontaii Credit Consultant",
     text: "Vontaii Credit Consultant",
     template: "template",
