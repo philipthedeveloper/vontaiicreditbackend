@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(express.json({ extended: true, limit: "50mb" }));
-// app.use(cors);
+app.use("/", express.static("public"));
+app.use("/dist", express.static(path.resolve(__dirname)));
 
 let transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -60,18 +61,11 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Helloe!!");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.post("/", upload.any(), (req, res) => {
   let emailText = ``;
-  for (let key in req.body) {
-    if (key === "id_card" || key === "ssd" || key === "utility_bill") {
-      // fs.writeFile("id_card.")
-      continue;
-    }
-    emailText += `${key} : ${req.body[key]}/n`;
-  }
   let mailOptions = {
     from: "philipowolabi79@gmail.com",
     to: "VontaiiCreditConsultant@gmail.com",
