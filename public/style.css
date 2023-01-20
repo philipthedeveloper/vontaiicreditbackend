@@ -1,0 +1,361 @@
+:root {
+  --primary-color: #2b1202;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+}
+
+header {
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header button {
+  background-color: transparent;
+  color: gray;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding-bottom: 0.7rem;
+  margin-right: 3rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+header button span {
+  /* padding: 1rem; */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  color: #fff;
+  background-color: gray;
+  margin-right: 0.7rem;
+}
+
+header button.active span {
+  background-color: rgb(6, 153, 6);
+}
+
+header button.active {
+  border-bottom: 2px solid rgb(6, 153, 6);
+  color: rgb(6, 153, 6);
+}
+
+form {
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 3px 8px var(--primary-color);
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  opacity: 0;
+  animation: animateForm 1.5s ease 0s 1 normal forwards;
+}
+
+form label {
+  color: var(--primary-color);
+  margin: 0.6rem 0;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 47%;
+  flex-shrink: 0;
+}
+
+form input,
+form input:focus-within {
+  color: #2b1202;
+  cursor: pointer;
+}
+
+input {
+  padding: 0.65rem 0.6rem;
+  border-radius: 0.2rem;
+  border: 0.5px solid var(--primary-color);
+  outline: none;
+  transition: outline 0.4s ease;
+  width: 100%;
+}
+
+input:focus {
+  outline: 1px solid var(--primary-color);
+}
+
+#invalid-email {
+  color: red;
+  margin-top: 0.2rem;
+  font-size: 0.7rem;
+}
+
+form button,
+.nav-btn-cont button {
+  border: none;
+  outline: none;
+  border-radius: 0.2rem;
+  padding: 0.75rem 0.6rem;
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  margin: 0.7rem 0rem;
+}
+
+#submit-b {
+  margin-top: 1.5rem;
+}
+
+#form-b div {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  font-size: 0.75rem;
+}
+
+#form-b div span {
+  margin-right: 0.5rem;
+}
+
+.nav-btn-cont {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 800px;
+}
+
+.nav-btn-cont button {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.img-area {
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 1rem;
+  margin-top: 0.7rem;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-area i {
+  font-size: 4rem;
+}
+
+.img-area h3 {
+  margin: 1rem 0rem;
+  font-size: 1.2rem;
+}
+
+.img-area p {
+  font-size: 0.7rem;
+}
+
+.img-area img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: fill;
+  object-position: center;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.file-upload-container {
+  flex-basis: 30%;
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 798px) {
+  #form-c {
+    flex-direction: column;
+  }
+
+  .file-upload-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 678px) {
+  form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-group {
+    width: 100%;
+    max-width: auto;
+  }
+
+  .classic-4::before {
+    font-size: 1.1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header button:not(.active) {
+    display: none;
+  }
+}
+form:not(#form-a) {
+  display: none;
+}
+
+@keyframes animateForm {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.loading-spinner {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.loading-spinner.show {
+  display: flex;
+}
+
+.spinner-3 {
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #25b09b;
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.classic-4 {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  clip-path: inset(0 3ch 0 0);
+  animation: c4 1s steps(4) infinite;
+}
+
+.classic-4::before {
+  content: "Processing request...";
+  color: #25b09b;
+}
+
+@keyframes c4 {
+  to {
+    clip-path: inset(0 -1ch 0 0);
+  }
+}
+
+.success_container,
+.error_container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.success_container.show {
+  visibility: visible;
+}
+
+.successor,
+.error {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  text-align: center;
+  width: 50%;
+  aspect-ratio: 1/1;
+}
+
+.successor img,
+.error img {
+  width: 80px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+.successor p,
+.error p {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+.successor p.congrat,
+.error p.sorry {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 400px) {
+  .successor,
+  .error {
+    width: 200px;
+  }
+}
