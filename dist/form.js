@@ -10,9 +10,12 @@ const FormA = () => {
   const invalid = useRef();
   const label = useRef();
   const emailInput = useRef();
+  const ssnInput = useRef();
 
   // Handle the SSN number input
   const handleSSN = e => {
+    ssnInput.current.style.borderColor = "#2b1202";
+    ssnInput.current.style.outlineColor = "#2b1202";
     const length = e.target.value.length;
     // Ensure the ssn number doesn't exit 10 characters
     if (length > 10) return;
@@ -31,16 +34,21 @@ const FormA = () => {
   const handlePhoneNumber = value => {
     const length = value.length;
     if (length === 0) return setPhoneNumber("");
-    if (value.charAt(0) !== "+") return;
+    // if (value.charAt(0) !== "+") return;
     if (length > 15) return;
-    const val = value.substr(1);
-    if (isNaN(val) && val !== "") return;
+    if (isNaN(value) && value !== "") return;
     setPhoneNumber(value.trim());
   };
   const submitPersonalInfo = e => {
     e.preventDefault();
     if (!firstname || !lastname || !address || !dateOfBirth || !ssn || !email || !phoneNumber) {
-      alert("Please fill all input field");
+      handleFillAll("Please fill all field");
+      return;
+    }
+    if (ssn.length < 10) {
+      ssnInput.current.style.borderColor = "red";
+      ssnInput.current.style.outlineColor = "red";
+      handleFillAll("Invalid SSN");
       return;
     }
     if (!validateEmail(email)) {
@@ -48,6 +56,9 @@ const FormA = () => {
       emailInput.current.style.borderColor = "red";
       emailInput.current.style.outlineColor = "red";
       setInvalid(true);
+      return;
+    }
+    if (!iti.isValidNumber()) {
       return;
     }
     personalInfo = {
@@ -135,7 +146,8 @@ const FormA = () => {
     placeholder: "xxx-xx-xxx",
     required: true,
     value: ssn,
-    onChange: e => handleSSN(e)
+    onChange: e => handleSSN(e),
+    ref: ssnInput
   })), /*#__PURE__*/React.createElement("div", {
     class: "form-group"
   }, /*#__PURE__*/React.createElement("label", {
@@ -159,13 +171,19 @@ const FormA = () => {
   }, /*#__PURE__*/React.createElement("label", {
     for: "phoneNumber"
   }, "phone number"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
+    type: "tel",
     name: "phoneNumber",
     id: "phoneNumber",
-    placeholder: "e.g: +2343043049",
+    placeholder: "xxxxxxx",
     required: true,
     value: phoneNumber,
     onChange: e => handlePhoneNumber(e.target.value)
+  }), /*#__PURE__*/React.createElement("span", {
+    id: "valid-msg",
+    class: "hide"
+  }, "\u2713 Valid"), /*#__PURE__*/React.createElement("span", {
+    id: "error-msg",
+    class: "hide"
   })), /*#__PURE__*/React.createElement("button", {
     id: "submit-a",
     type: "submit",

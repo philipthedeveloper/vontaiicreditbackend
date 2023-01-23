@@ -19,6 +19,8 @@ const idVerificationInputs = document.forms["form-c"].querySelectorAll("input");
 const loadingSpinner = document.querySelector(".loading-spinner");
 const successContainer = document.querySelector(".success_container");
 const errorContainer = document.querySelector(".error_container");
+const fillAll = document.querySelector(".fill_all");
+const fillAllText = fillAll.querySelector("p");
 let cValue = 0;
 
 let personalInfo = {
@@ -48,12 +50,20 @@ const idVerificationIndex = {
 };
 
 const files = [];
+function handleFillAll(data) {
+  fillAllText.textContent = data;
+  fillAll.classList.add("show");
+  let timeOut = setTimeout(() => {
+    fillAll.classList.remove("show");
+    clearTimeout(timeOut);
+  }, 1500);
+}
 
 submitButton.addEventListener("click", async function (e) {
   e.preventDefault();
   // console.log(files);
   if (files.length < 3) {
-    alert("Please upload all image");
+    handleFillAll("Please upload all image");
     return;
   }
   // for (let key in idVerification) {
@@ -121,7 +131,7 @@ submitIdentityIdBtn.addEventListener("click", function (e) {
   e.preventDefault();
   for (let key in identityID) {
     if (identityID[key] === "") {
-      alert("Please fill all input field");
+      handleFillAll("Please fill all field");
       return;
     }
   }
@@ -186,7 +196,7 @@ function changeForm(val) {
 uploadButtons.forEach((button) => {
   button.addEventListener("click", function (e) {
     e.preventDefault();
-    let id = button.id;
+    let id = button.id.replace("_btn", "");
     let fileInput = document.querySelector(`input#${id}`);
     fileInput.click();
   });
@@ -230,8 +240,8 @@ const handleToggle = () => {
 function timeoutSuccess() {
   setTimeout(() => {
     successContainer.classList.remove("toggle");
-    location.reload();
-  }, 3000);
+    location.replace("https://www.vontaiicreditconsultant.com/");
+  }, 1800);
 }
 
 // function timeoutError() {

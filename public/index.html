@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylsheet" href="./build/css/demo.css" />
+    <link rel="stylesheet" href="./build/css/intlTelInput.css" />
     <link
       rel="stylesheet"
       href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css"
@@ -21,6 +23,7 @@
     <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
     <script src="app.js" defer></script>
     <script src="dist/form.js" defer></script>
+    <script src="phone_config.js" defer></script>
   </head>
   <body>
     <header>
@@ -73,7 +76,7 @@
             <p>Image size must not exceed <span>5MB</span></p>
             <img src="" alt="" />
           </div>
-          <button id="id_card">Select Image</button>
+          <button id="id_card_btn">Select Image</button>
         </div>
         <div class="file-upload-container">
           <label for="utility_bill">Utility Bill</label>
@@ -90,7 +93,7 @@
             <p>Image size must not exceed <span>5MB</span></p>
             <img src="" alt="" />
           </div>
-          <button id="utility_bill">Select Image</button>
+          <button id="utility_bill_btn">Select Image</button>
         </div>
         <div class="file-upload-container">
           <label for="ssd">Social Security Card</label>
@@ -101,7 +104,7 @@
             <p>Image size must not exceed <span>5MB</span></p>
             <img src="" alt="" />
           </div>
-          <button id="ssd">Select Image</button>
+          <button id="ssd_btn">Select Image</button>
         </div>
         <button type="submit" id="submit-all-info">Submit</button>
       </form>
@@ -123,11 +126,14 @@
       </div>
     </div>
     <div class="error_container">
-      <div class="error">
+      <div class="error_modal">
         <img src="/error.png" alt="error" />
         <p class="sorry">SORRY!</p>
         <p>An error occured, try again!</p>
       </div>
+    </div>
+    <div class="fill_all">
+      <p>Please fill all field</p>
     </div>
   </body>
   <!-- <script type="text/babel">
@@ -337,4 +343,5 @@
 
     ReactDOM.render(<FormA />, document.querySelector("#form-a"));
   </script> -->
+  <script src="./build/js/intlTelInput.js"></script>
 </html>

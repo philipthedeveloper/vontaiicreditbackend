@@ -7,13 +7,15 @@ const FormA = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isInvalid, setInvalid] = useState(false);
-
   const invalid = useRef();
   const label = useRef();
   const emailInput = useRef();
+  const ssnInput = useRef();
 
   // Handle the SSN number input
   const handleSSN = (e) => {
+    ssnInput.current.style.borderColor = "#2b1202";
+    ssnInput.current.style.outlineColor = "#2b1202";
     const length = e.target.value.length;
     // Ensure the ssn number doesn't exit 10 characters
     if (length > 10) return;
@@ -32,10 +34,9 @@ const FormA = () => {
   const handlePhoneNumber = (value) => {
     const length = value.length;
     if (length === 0) return setPhoneNumber("");
-    if (value.charAt(0) !== "+") return;
+    // if (value.charAt(0) !== "+") return;
     if (length > 15) return;
-    const val = value.substr(1);
-    if (isNaN(val) && val !== "") return;
+    if (isNaN(value) && value !== "") return;
     setPhoneNumber(value.trim());
   };
   const submitPersonalInfo = (e) => {
@@ -50,7 +51,14 @@ const FormA = () => {
       !email ||
       !phoneNumber
     ) {
-      alert("Please fill all input field");
+      handleFillAll("Please fill all field");
+      return;
+    }
+
+    if (ssn.length < 10) {
+      ssnInput.current.style.borderColor = "red";
+      ssnInput.current.style.outlineColor = "red";
+      handleFillAll("Invalid SSN");
       return;
     }
 
@@ -59,6 +67,10 @@ const FormA = () => {
       emailInput.current.style.borderColor = "red";
       emailInput.current.style.outlineColor = "red";
       setInvalid(true);
+      return;
+    }
+
+    if (!iti.isValidNumber()) {
       return;
     }
 
@@ -153,6 +165,7 @@ const FormA = () => {
           required
           value={ssn}
           onChange={(e) => handleSSN(e)}
+          ref={ssnInput}
         />
       </div>
       <div class="form-group">
@@ -179,14 +192,18 @@ const FormA = () => {
       <div class="form-group">
         <label for="phoneNumber">phone number</label>
         <input
-          type="text"
+          type="tel"
           name="phoneNumber"
           id="phoneNumber"
-          placeholder="e.g: +2343043049"
+          placeholder="xxxxxxx"
           required
           value={phoneNumber}
           onChange={(e) => handlePhoneNumber(e.target.value)}
         />
+        <span id="valid-msg" class="hide">
+          ✓ Valid
+        </span>
+        <span id="error-msg" class="hide"></span>
       </div>
       <button
         id="submit-a"
