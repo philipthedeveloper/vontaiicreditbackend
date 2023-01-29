@@ -18,7 +18,7 @@ const FormA = () => {
     ssnInput.current.style.outlineColor = "#2b1202";
     const length = e.target.value.length;
     // Ensure the ssn number doesn't exit 10 characters
-    if (length > 10) return;
+    if (length > 11) return;
     const value = e.target.value.split("-").join("");
     if (isNaN(value)) return;
     if (length === 3) {
@@ -55,7 +55,7 @@ const FormA = () => {
       return;
     }
 
-    if (ssn.length < 10) {
+    if (ssn.length < 11) {
       ssnInput.current.style.borderColor = "red";
       ssnInput.current.style.outlineColor = "red";
       handleFillAll("Invalid SSN");
@@ -161,7 +161,7 @@ const FormA = () => {
           type="text"
           name="ssn"
           id="ssn"
-          placeholder="xxx-xx-xxx"
+          placeholder="xxx-xx-xxxx"
           required
           value={ssn}
           onChange={(e) => handleSSN(e)}
